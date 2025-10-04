@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Professor;
 use App\Http\Requests\StoreProfessorRequest;
 use App\Http\Requests\UpdateProfessorRequest;
+use App\Models\User;
 
 class ProfessorController extends Controller
 {
@@ -22,7 +23,7 @@ class ProfessorController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.professors.create');
     }
 
     /**
@@ -30,7 +31,15 @@ class ProfessorController extends Controller
      */
     public function store(StoreProfessorRequest $request)
     {
-        //
+        $professor = Professor::create($request->only('name', 'phoneNumber', 'gender','age'));
+        $professor2= User::create([
+            ...$request->only('email', 'password','name'),
+            'role' => 'professor',
+        ]);
+        if($professor && $professor2){
+            return redirect()->route('professors.index');
+        }
+        return redirect()->route('professors.create');
     }
 
     /**
