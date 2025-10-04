@@ -55,7 +55,7 @@ class ProfessorController extends Controller
      */
     public function edit(Professor $professor)
     {
-        //
+        return view('admin.professors.edit', compact('professor'));
     }
 
     /**
@@ -63,7 +63,11 @@ class ProfessorController extends Controller
      */
     public function update(UpdateProfessorRequest $request, Professor $professor)
     {
-        //
+        $status= $professor->update($request->only('name', 'phoneNumber', 'gender','age'));
+        if($status){
+            return redirect()->route('professors.index');
+        }
+        return redirect()->route('professors.edit');
     }
 
     /**

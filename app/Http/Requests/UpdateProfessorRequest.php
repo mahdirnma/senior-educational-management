@@ -11,7 +11,7 @@ class UpdateProfessorRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class UpdateProfessorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+            'age' => 'required|integer|between:1,100',
+            'gender' => 'required',
+            'phoneNumber' => 'required',
+
         ];
     }
 }
