@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Professor;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,12 @@ class ProfessorSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Professor::create([
+            'name' => 'ali',
+            'phoneNumber' => '09185966325',
+            'age' => 46,
+            'gender' => 'male',
+        ]);
+
     }
 }
