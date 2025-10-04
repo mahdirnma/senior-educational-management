@@ -75,6 +75,7 @@ class ProfessorController extends Controller
      */
     public function destroy(Professor $professor)
     {
-        //
+        $professor->update(['is_active' => 0]);
+        return redirect()->route('professors.index');
     }
 }
