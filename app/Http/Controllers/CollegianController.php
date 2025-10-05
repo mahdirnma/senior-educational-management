@@ -55,7 +55,7 @@ class CollegianController extends Controller
      */
     public function edit(Collegian $collegian)
     {
-        //
+        return view('admin.collegians.edit', compact('collegian'));
     }
 
     /**
@@ -63,7 +63,15 @@ class CollegianController extends Controller
      */
     public function update(UpdateCollegianRequest $request, Collegian $collegian)
     {
-        //
+        $status= $collegian->update($request->only('name','phoneNumber','gender','age'));
+        $user=User::where('email',$collegian->email)->first();
+        $status= $user->update([
+            'name'=>$request->name
+        ]);
+        if ($status){
+            return redirect()->route('collegians.index');
+        }
+        return redirect()->route('collegians.edit');
     }
 
     /**
@@ -71,6 +79,9 @@ class CollegianController extends Controller
      */
     public function destroy(Collegian $collegian)
     {
-        //
+        $user=User::where('email',$collegian->email)->first();
+        $user->update(['is_active'=>0]);
+        $collegian->update(['is_active'=>0]);
+        return redirect()->route('collegians.index');
     }
 }

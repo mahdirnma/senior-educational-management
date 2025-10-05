@@ -79,6 +79,8 @@ class ProfessorController extends Controller
      */
     public function destroy(Professor $professor)
     {
+        $user=User::where('email',$professor->email)->first();
+        $user->update(['is_active'=>0]);
         $professor->update(['is_active' => 0]);
         return redirect()->route('professors.index');
     }
