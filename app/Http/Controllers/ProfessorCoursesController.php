@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProfessorCourseRequest;
+use App\Models\Course;
 use App\Models\Professor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,4 +32,9 @@ class ProfessorCoursesController extends Controller
         return redirect()->back();
     }
 
+    public function showCollegians(Course $course)
+    {
+        $collegians=$course->collegians;
+        return view('professor.collegians',compact('collegians'));
+    }
 }

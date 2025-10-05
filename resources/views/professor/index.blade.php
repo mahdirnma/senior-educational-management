@@ -21,6 +21,12 @@
                     <tbody>
                     @foreach($courses as $course)
                         <tr>
+                            <td class="text-center">
+                                <form action="{{route('professor.courses.collegians',compact('course'))}}" method="get">
+                                    @csrf
+                                    <button type="submit" class="text-cyan-600 cursor-pointer">show collegians</button>
+                                </form>
+                            </td>
                             <td class="text-center">{{$course->capacity}}</td>
                             <td class="text-center">{{$course->description}}</td>
                             <td class="text-center">{{$course->title}}</td>

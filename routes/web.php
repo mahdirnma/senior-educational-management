@@ -12,6 +12,7 @@ Route::middleware('isProfessor')->group(function () {
     Route::get('/professor/courses',[ProfessorCoursesController::class,'professorCourses'])->name('professor.courses')->middleware('auth');
     Route::get('/professor/courses/create',[ProfessorCoursesController::class,'createCourses'])->name('professor.courses.create')->middleware('auth');
     Route::post('/professor/courses/store',[ProfessorCoursesController::class,'storeCourses'])->name('professor.courses.store')->middleware('auth');
+    Route::get('/professor/courses/{course}/collegians',[ProfessorCoursesController::class,'showCollegians'])->name('professor.courses.collegians')->middleware('auth');
 });
 Route::middleware('isCollegian')->group(function () {
     Route::get('/collegian/courses',[CollegianCoursesController::class,'collegianCourses'])->name('collegian.courses')->middleware('auth');
