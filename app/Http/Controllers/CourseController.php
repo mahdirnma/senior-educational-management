@@ -73,6 +73,7 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        $status=$course->update(['is_active'=>0]);
+        return redirect()->route('courses.index');
     }
 }
