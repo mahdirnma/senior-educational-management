@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Collegian;
 use App\Http\Requests\StoreCollegianRequest;
 use App\Http\Requests\UpdateCollegianRequest;
+use App\Models\User;
 
 class CollegianController extends Controller
 {
@@ -22,7 +23,7 @@ class CollegianController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.collegians.create');
     }
 
     /**
@@ -30,7 +31,15 @@ class CollegianController extends Controller
      */
     public function store(StoreCollegianRequest $request)
     {
-        //
+        $collegian=Collegian::create($request->only('name','phoneNumber','gender','age','email'));
+        $user=User::create([
+            ...$request->only('name','email','password'),
+            'role'=>'collegian'
+        ]);
+        if ($collegian && $user) {
+            return redirect()->route('collegians.index');
+        }
+        return redirect()->route('collegians.create');
     }
 
     /**
