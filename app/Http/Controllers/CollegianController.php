@@ -13,7 +13,8 @@ class CollegianController extends Controller
      */
     public function index()
     {
-        //
+        $collegians = Collegian::where('is_active',1)->paginate(2);
+        return view('admin.collegians.index', compact('collegians'));
     }
 
     /**
