@@ -16,6 +16,9 @@ Route::middleware('isProfessor')->group(function () {
 });
 Route::middleware('isCollegian')->group(function () {
     Route::get('/collegian/courses',[CollegianCoursesController::class,'collegianCourses'])->name('collegian.courses')->middleware('auth');
+    Route::get('/collegian/courses/create',[CollegianCoursesController::class,'createCourses'])->name('collegian.courses.create')->middleware('auth');
+    Route::post('/collegian/courses/store',[CollegianCoursesController::class,'storeCourses'])->name('collegian.courses.store')->middleware('auth');
+
 });
 Route::middleware('auth')->group(function(){
     Route::middleware('isAdmin')->group(function(){
