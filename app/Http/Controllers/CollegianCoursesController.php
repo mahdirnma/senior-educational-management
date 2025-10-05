@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProfessorCourseRequest;
 use App\Models\Collegian;
+use App\Models\Professor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,5 +17,4 @@ class CollegianCoursesController extends Controller
         $courses=$collegian->courses;
         return view('collegian.index',compact('courses'));
     }
-
 }
