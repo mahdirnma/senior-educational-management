@@ -1,4 +1,4 @@
-@extends('layout.app2')
+@extends('layout.app3')
 @section('title')
     courses
 @endsection
