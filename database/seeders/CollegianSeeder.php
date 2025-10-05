@@ -16,6 +16,7 @@ class CollegianSeeder extends Seeder
         Collegian::create([
             'name' => 'reza',
             'phoneNumber' => '09185456325',
+            'email' => 'reza@gmail.com',
             'age' => 22,
             'gender' => 'male',
         ]);

@@ -16,6 +16,7 @@ class ProfessorSeeder extends Seeder
         Professor::create([
             'name' => 'ali',
             'phoneNumber' => '09185966325',
+            'email' => 'ali@gmail.com',
             'age' => 46,
             'gender' => 'male',
         ]);

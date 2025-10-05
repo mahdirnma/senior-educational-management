@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('phoneNumber');
+            $table->string('email')->unique();
             $table->integer('age');
             $table->string('gender');
             $table->boolean('is_active')->default(true);
