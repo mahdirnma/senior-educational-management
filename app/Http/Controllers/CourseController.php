@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use App\Models\Professor;
 
 class CourseController extends Controller
 {
@@ -22,7 +23,8 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        $professors=Professor::where('is_active',1)->get();
+        return view('admin.courses.create',compact('professors'));
     }
 
     /**
@@ -30,7 +32,11 @@ class CourseController extends Controller
      */
     public function store(StoreCourseRequest $request)
     {
-        //
+        $course=Course::create($request->all());
+        if($course){
+            return redirect()->route('courses.index');
+        }
+        return redirect()->route('courses.create');
     }
 
     /**
