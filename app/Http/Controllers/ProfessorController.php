@@ -31,7 +31,7 @@ class ProfessorController extends Controller
      */
     public function store(StoreProfessorRequest $request)
     {
-        $professor = Professor::create($request->only('name', 'phoneNumber', 'gender','age'));
+        $professor = Professor::create($request->only('name', 'phoneNumber', 'gender','age','email'));
         $professor2= User::create([
             ...$request->only('email', 'password','name'),
             'role' => 'professor',
@@ -63,7 +63,11 @@ class ProfessorController extends Controller
      */
     public function update(UpdateProfessorRequest $request, Professor $professor)
     {
-        $status= $professor->update($request->only('name', 'phoneNumber', 'gender','age'));
+        $status= $professor->update($request->only('name', 'phoneNumber', 'gender','age','email'));
+        $person = User::where('email',$professor->email)->first();
+        $status = $person->update([
+            'name'=>$request->name
+        ]);
         if($status){
             return redirect()->route('professors.index');
         }
