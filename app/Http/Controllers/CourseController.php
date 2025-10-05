@@ -52,7 +52,8 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        //
+        $professors=Professor::where('is_active',1)->get();
+        return view('admin.courses.edit',compact('course','professors'));
     }
 
     /**
@@ -60,7 +61,11 @@ class CourseController extends Controller
      */
     public function update(UpdateCourseRequest $request, Course $course)
     {
-        //
+        $status=$course->update($request->all());
+        if($status){
+            return redirect()->route('courses.index');
+        }
+        return redirect()->route('courses.edit');
     }
 
     /**
